@@ -2,12 +2,14 @@ from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 
 class gym:
-    inital_text_location = 0, 4
+    initial_text_location = 2, 4
     screen_size = 64,32
     now = datetime.now()
     hour = now.strftime("%I")
     minute = now.strftime("%M")
     image = Image.new("RGB", screen_size)
+    image.thumbnail(screen_size, Image.ANTIALIAS)
+
     t = {
         'hour': hour,
         'minute': minute
@@ -19,30 +21,30 @@ class gym:
     }
 
     def run(self):
-        self.check_time(self.t)
+        self.check_time()
+        self.generate_text(self.image, self.update_text(), self.initial_text_location, 27)
 
-
-    def check_time(self, current):
-        print('current Time: ', current['hour'], ':', current['minute'])
+    def check_time(self):
         now = datetime.now()
         new_hour = now.strftime("%I")
         new_minute = now.strftime("%M")
 
-        if(new_hour != current['hour'] or new_minute != current['minute']):
-            current['hour'] = new_hour
-            current['minute'] = new_minute
-            print('New Time: ', new_hour,':',new_minute)
-            self.update_display(current) 
-        
+        if(new_minute != self.t['minute']):
+            print('New Min: ', new_minute)
+            self.t['minute'] = new_minute
+            self.clear_screen()
 
-    def update_display(self, text_display):
-        image = Image.new("RGB", self.screen_size)
-        image.thumbnail(self.screen_size, Image.ANTIALIAS)
-        text = text_display['hour'] + ":" + text_display['minute']
-        self.generate_text(image, text , self.inital_text_location, 27)
-        print("display updated")
-        print(text_display)
-        
+        if(new_hour != self.t['hour']):
+            self.t['hour'] = new_hour
+            print('New Hour: ', new_hour)
+            self.clear_screen()
+
+    def clear_screen(self):
+        self.image = Image.new("RGB",self.screen_size)
+
+    def update_text(self):
+        text = self.t['hour'] + ':' + self.t['minute']
+        return text
 
     def generate_text(self, im, text, begin_loc, font_size):
         font = ImageFont.truetype('./fonts/digital-7-mono.ttf', size=(font_size))
