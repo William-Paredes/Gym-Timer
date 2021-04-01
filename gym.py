@@ -8,7 +8,6 @@ class gym:
     hour = now.strftime("%I")
     minute = now.strftime("%M")
     image = Image.new("RGB", screen_size)
-    image.thumbnail(screen_size, Image.ANTIALIAS)
 
     t = {
         'hour': hour,
@@ -49,4 +48,4 @@ class gym:
     def generate_text(self, im, text, begin_loc, font_size):
         font = ImageFont.truetype('./fonts/digital-7-mono.ttf', size=(font_size))
         draw = ImageDraw.Draw(im)
-        draw.text(begin_loc, text, font=font)
+        draw.text(begin_loc, text, font=font, fill='red')
