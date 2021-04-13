@@ -17,7 +17,7 @@ def checkdata(): #check json file for any changes
 
 def changeModeZero(): # change data mode to 0
     data['mode'] = 0
-    with open('data.json', 'w', encoding='utf-8') as outjson:
+    with open('/home/pi/Gym-Timer/data.json', 'w', encoding='utf-8') as outjson:
             json.dump(data, outjson,  indent=4)
             print(data)
 
