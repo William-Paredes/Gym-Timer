@@ -15,10 +15,8 @@ def checkdata(): #check json file for any changes
 def changeModeZero(): # change data mode to 0
     data['mode'] = 0
     with open(const.data_location, 'w', encoding='utf-8') as outjson:
-            json.dump(data, outjson,  indent=4)
-        sleep(0.5)
-    except: 
-        print("error")
+        json.dump(data, outjson,  indent=4)
+    sleep(0.5)
 
 def initialData(): # change data mode to 0
     data = {"minutes":0, "mode":0, "timer":False}
@@ -52,7 +50,6 @@ while True:
     else:
         if clock.check_time() == True:
             display.update_screen(clock.text)   #Update display with new time
-    
     sleep(1)
 
 
