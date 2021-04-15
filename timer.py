@@ -1,6 +1,7 @@
 import time 
 import json
 from display import Display
+import const
 
 class Timer(): 
     def __init__(self):
@@ -20,16 +21,16 @@ class Timer():
         print('Cancel: ', self.cancel)
 
     def checkdata(self): #check json file for any changes
-        with open("data.json") as f:
+        with open(const.data_location) as f:
             data = json.load(f)
         return data['timer']
     def setCancel(self):
-        with open('data.json', 'r', encoding='utf-8') as outjson:
+        with open(const.data_location, 'r', encoding='utf-8') as outjson:
             json_data = json.load(outjson)
             print(json_data)
             json_data['timer'] = False
     
-        with open('data.json', 'w') as output:
+        with open(const.data_location, 'w') as output:
             json.dump(json_data, output, indent=4)
 
     def countdown_min(self, t):

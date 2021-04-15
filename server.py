@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json 
 import time
+import const
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ def messaging():
         print("hello")
         response = request.get_json(silent=True)
         # open json file update data
-        with open('data.json', 'w', encoding='utf-8') as outjson:
+        with open(const.data_location, 'w', encoding='utf-8') as outjson:
             json.dump(response, outjson,  indent=4)
             print(response)
         
@@ -19,7 +20,7 @@ def messaging():
 
 @app.route('/canceltimer')
 def cancelTimer():
-        with open('data.json', 'r', encoding='utf-8') as outjson:
+        with open(const.data_location, 'r', encoding='utf-8') as outjson:
             json_data = json.load(outjson)
             print(json_data)
             json_data['timer'] = True
