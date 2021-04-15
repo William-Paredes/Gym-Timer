@@ -18,8 +18,9 @@ def messaging():
         
         return "Okay", 200 
 
-@app.route('/canceltimer')
+@app.route('/canceltimer', methods=['PUT'])
 def cancelTimer():
+    if request.method == 'PUT':
         with open(const.data_location, 'r', encoding='utf-8') as outjson:
             json_data = json.load(outjson)
             print(json_data)
@@ -27,5 +28,5 @@ def cancelTimer():
     
         with open('data.json', 'w') as output:
             json.dump(json_data, output, indent=4)
-        
+        print(json_data)
         return "Canceled"

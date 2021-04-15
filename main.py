@@ -33,7 +33,7 @@ clock = Clock()
 timer = Timer()
 display = Display()
 
-data = {"minutes":0, "mode":0}
+data = {"minutes":0, "mode":0, "timer":False}
 mode = 0
 blink = 0
 initialData()
