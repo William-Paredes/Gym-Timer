@@ -6,10 +6,6 @@ from time import sleep
 import requests
 import json, os 
 
-clock = Clock()
-timer = Timer()
-display = Display()
-
 def checkdata(): #check json file for any changes
     with open("data.json") as f:
         data = json.load(f)
@@ -17,14 +13,30 @@ def checkdata(): #check json file for any changes
 
 def changeModeZero(): # change data mode to 0
     data['mode'] = 0
-    with open('data.json', 'w', encoding='utf-8') as outjson:
+    try: 
+        with open('data.json', 'w', encoding='utf-8') as outjson:
             json.dump(data, outjson,  indent=4)
-            print(data)
+        sleep(0.5)
+    except: 
+        print("error")
 
+def initialData(): # change data mode to 0
+    data = {"minutes":0, "mode":0, "timer":False}
+    try: 
+        with open('data.json', 'w', encoding='utf-8') as outjson:
+            json.dump(data, outjson,  indent=4)
+        sleep(0.5)
+    except: 
+        print("error")
+
+clock = Clock()
+timer = Timer()
+display = Display()
 
 data = {"minutes":0, "mode":0}
 mode = 0
 blink = 0
+initialData()
 text = clock.text
 display.update_screen(text)
 

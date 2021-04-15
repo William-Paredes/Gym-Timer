@@ -14,5 +14,17 @@ def messaging():
         with open('data.json', 'w', encoding='utf-8') as outjson:
             json.dump(response, outjson,  indent=4)
             print(response)
-        return response, 200 
         
+        return "Okay", 200 
+
+@app.route('/canceltimer')
+def cancelTimer():
+        with open('data.json', 'r', encoding='utf-8') as outjson:
+            json_data = json.load(outjson)
+            print(json_data)
+            json_data['timer'] = True
+    
+        with open('data.json', 'w') as output:
+            json.dump(json_data, output, indent=4)
+        
+        return "Canceled"
