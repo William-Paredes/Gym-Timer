@@ -28,5 +28,4 @@ def cancelTimer():
     
         with open('data.json', 'w') as output:
             json.dump(json_data, output, indent=4)
-        print(json_data)
         return "Canceled"
