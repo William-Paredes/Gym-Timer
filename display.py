@@ -11,7 +11,7 @@ class Display():
     options.parallel = 1
     options.hardware_mapping = 'adafruit-hat'
     options.brightness = 50
-    
+    options.gpio_slowdown = 4    
     matrix = RGBMatrix(options = options)
     
     def __init__(self):
@@ -22,7 +22,6 @@ class Display():
     def update_screen(self, text):
         self.clear_screen()
         self.generate_text(self.image, text, const.initial_text_location, const.font_size)
-        print(text)
         self.matrix.SetImage(self.image.convert('RGB'))
 
     def clear_screen(self):

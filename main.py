@@ -31,7 +31,7 @@ clock = Clock()
 timer = Timer()
 display = Display()
 
-data = {"minutes":0, "mode":0}
+data = {"minutes":0, "mode":0, "timer":False}
 mode = 0
 blink = 0
 initialData()
@@ -50,7 +50,7 @@ while True:
     else:
         if clock.check_time() == True:
             display.update_screen(clock.text)   #Update display with new time
-    sleep(1)
+    sleep(0.15)
 
 
     

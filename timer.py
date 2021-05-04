@@ -18,7 +18,6 @@ class Timer():
     def checkCancel(self):
         data = self.checkdata()
         self.cancel = data
-        print('Cancel: ', self.cancel)
 
     def checkdata(self): #check json file for any changes
         with open(const.data_location) as f:
@@ -27,7 +26,6 @@ class Timer():
     def setCancel(self):
         with open(const.data_location, 'r', encoding='utf-8') as outjson:
             json_data = json.load(outjson)
-            print(json_data)
             json_data['timer'] = False
     
         with open(const.data_location, 'w') as output:
@@ -43,7 +41,7 @@ class Timer():
                 timer = '{:02d}:{:02d}'.format(mins, sec) 
                 self.text = timer
                 self.display.update_screen(timer)
-                time.sleep(1)
+                time.sleep(0.94)
                 seconds-=1
             else:
                 break

@@ -1,5 +1,5 @@
 {
-    "minutes": "2",
-    "mode": 1,
-    "timer": true
+    "minutes": "3",
+    "mode": 0,
+    "timer": false
 }
